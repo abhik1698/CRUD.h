@@ -54,10 +54,13 @@
           
           if($conn->query($sql)){
             echo "Table Created Successfully";
+            $sql = "insert into `miniW`.`tbls` values('$user', '$keywords[1]')";
+            $conn->query($sql);
           } else {
             echo "Oops, table already exists..";
           }
         }
+        
     } 
     // else ($count < 2){
     //   echo("Create Syntax is Wrong"); 
@@ -81,11 +84,39 @@
   // flush();
     $conn->close();           
 ?>
-    
+  <center>
+    <h1>Schema named "<?=$user?>" is successfully Created</h1>
+  <h1>
   <form action="../dashboard.php/?user=<?=$user?>" method="post"> 
-  <input type="text" name="qry"/> 
+  <input type="text" name="qry" placeholder="Query here"/> 
   <input type="submit" name="SubmitButton"/> 
   </form>
-  
+<?php
+  // $conn = new mysqli('127.0.0.1:3306', 'root', '', 'miniW');
+  //   $sql = "select * from `miniW`.`tbls` where user='$user'";
+  //   $result = $conn->query($sql);
+
+  //   while($row = mysqli_fetch_assoc($result)) {
+  //     // print_r (array_values($row)[1]);
+  //     $tbl = array_values($row)[1];
+  //     $sql2 = "select * from `$user`.`$tbl`";
+  //     $result2 = $conn->query($sql);
+  //     while($row2 = mysqli_fetch_assoc($result2)) {
+  //       print_r (array_keys($row2));
+  //       for($i = 0; $i < count(array_keys($row2)); $i++){
+  //         print_r (array_values($row2)[$i]);
+  //       }
+  //       echo "<br/>";
+  //     }
+      
+  // }
+    // $sql = "select tbl from `miniW`.`tbls` where user=$user";
+  ?>
+
+  <h2>---Syntax---</h2>
+  <br>
+  <h3>Create: <br>c &nbsp;&nbsp;&lt;tablename&gt;&nbsp;&nbsp; [&lt;Columns...&gt;]</h3>
+  <h3>Drop: <br>d &nbsp;&nbsp;&lt;tablename&gt;</h3>
+  </center>
   </body>
 </html>

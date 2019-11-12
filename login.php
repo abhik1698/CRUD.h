@@ -23,7 +23,9 @@
     } else {
         $sql = "select uid from login where uid='$username' and pwd='$password'";
         $result = $conn->query($sql);
-        if ($result->num_rows > 0) {            
+        if ($result->num_rows > 0) { 
+            $sql = "CREATE SCHEMA `$username`";
+            $conn->query($sql);           
             echo "<script>window.location = 'dashboard.php/?user=$username';</script>"; //Reg success
             // echo "Hi oldie";
         } else {
