@@ -15,11 +15,12 @@
     $user = $_GET["user"];
     $sql = "select * from tbls where user=$user";
     $result = $conn->query($sql);
+    if($result) {
+      while($row = mysqli_fetch_assoc($result)) {
+        echo $row["tbl"];
+      }
+    }
     
-    while($row = mysqli_fetch_assoc($result)) {
-      echo $row["tbl"];
-    }  
-
     if(isset($_POST['SubmitButton'])){ //check if form was submitted
       $qry = $_POST['qry']; //get query    
       $qry = trim($qry);
@@ -77,7 +78,7 @@
     }  
     // unset($keywords); 
       // ob_implicit_flush(true);
-  flush();
+  // flush();
     $conn->close();           
 ?>
     
