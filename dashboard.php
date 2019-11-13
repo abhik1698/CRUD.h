@@ -39,10 +39,9 @@
       }
       $keywords[$count] = $keyword;
       
-      //Create Table Syntax <c> <tableName> <columns...>
-      
-      if($count > 1) {
-        if (strcmp($keywords[0], 'c')){  
+      //Create Table Syntax <c> <tableName> <columns...>            
+      if ((trim($keywords[0]) === "c")){  
+        if($count > 1){
           $keywords[1] = trim($keywords[1]);      
           $sql = "CREATE TABLE `$user`.`$keywords[1]` ( ";
           for($i = 2; $i < $count; $i++){
@@ -58,65 +57,67 @@
             $conn->query($sql);
           } else {
             echo "Oops, table already exists..";
-          }
+          }            
+        }        
+        else{
+          echo("Create Syntax is Wrong"); 
         }
-        
-    } 
-    // else ($count < 2){
-    //   echo("Create Syntax is Wrong"); 
-    // }                             
-      //Delete Table Syntax <DROP TABLE `5`.`v`;          (strcmp($keywords[0], 'd'))
-      else{  
+      }
+      //remove schema
+      elseif((trim($keywords[0]) === "r")){
+        if($count < 1){
+          $sql = "DROP DATABASE `$user`";
+          $conn->query($sql);          
+                                         
+          echo "<script>window.location = '../index.html';</script>";                
+          $sql = "delete from `miniW`.`tbls` where user='$user'";
+          $conn->query($sql);              
+          $sql = "delete from `miniW`.`login` where uid='$user'";
+          $conn->query($sql);              
+        }
+      } 
+
+      //Drop Table
+      elseif((trim($keywords[0]) === "d")){  
         $keywords[1] = trim($keywords[1]);      
         $sql = "DROP TABLE `$user`.`$keywords[1]`";             
         if($count != 1){
           echo("DROP Syntax is Wrong"); 
-        }
+        }        
         if($conn->query($sql)){
           echo "Table Dropped Successfully";
         } else {
           echo "No such table exists..";
-        }        
+        }
+        $sql = "delete from `miniW`.`tbls` where user='$user' and tbl='$keywords[1]'";
+        $conn->query($sql);        
       }                                  
     }  
-    // unset($keywords); 
-      // ob_implicit_flush(true);
-  // flush();
     $conn->close();           
 ?>
   <center>
     <h1>Schema named "<?=$user?>" is successfully Created</h1>
   <h1>
-  <form action="../dashboard.php/?user=<?=$user?>" method="post"> 
+  <form autocomplete="off" action="../dashboard.php/?user=<?=$user?>" method="post"> 
   <input type="text" name="qry" placeholder="Query here"/> 
   <input type="submit" name="SubmitButton"/> 
   </form>
 <?php
-  // $conn = new mysqli('127.0.0.1:3306', 'root', '', 'miniW');
-  //   $sql = "select * from `miniW`.`tbls` where user='$user'";
-  //   $result = $conn->query($sql);
-
-  //   while($row = mysqli_fetch_assoc($result)) {
-  //     // print_r (array_values($row)[1]);
-  //     $tbl = array_values($row)[1];
-  //     $sql2 = "select * from `$user`.`$tbl`";
-  //     $result2 = $conn->query($sql);
-  //     while($row2 = mysqli_fetch_assoc($result2)) {
-  //       print_r (array_keys($row2));
-  //       for($i = 0; $i < count(array_keys($row2)); $i++){
-  //         print_r (array_values($row2)[$i]);
-  //       }
-  //       echo "<br/>";
-  //     }
-      
-  // }
-    // $sql = "select tbl from `miniW`.`tbls` where user=$user";
+  $conn = new mysqli('127.0.0.1:3306', 'root', '', 'miniW');
+  $sql = "select tbl from `miniW`.`tbls` where user='$user'";
+  $result = $conn->query($sql);
+  echo "<table><th><td>Your Tables</td></th>";
+  while($row = mysqli_fetch_assoc($result)){
+    echo ("<tr><td>".$row['tbl']."</tr></td>");
+  }
+  echo "</table>";
+  $conn->close();
   ?>
 
   <h2>---Syntax---</h2>
-  <br>
-  <h3>Create: <br>c &nbsp;&nbsp;&lt;tablename&gt;&nbsp;&nbsp; [&lt;Columns...&gt;]</h3>
-  <h3>Drop: <br>d &nbsp;&nbsp;&lt;tablename&gt;</h3>
+  <h3>Create Table</h3><p><b>></b> c &nbsp;&nbsp;&lt;tableName&gt;&nbsp;&nbsp; [&lt;Columns...&gt;]</p>
+  <h3>Drop Table</h3><p><b>></b> d &nbsp;&nbsp;&lt;tableName&gt;</p>
+  <h3>Drop Schema</h3><p><b>></b> r</p>
   </center>
   </body>
 </html>
