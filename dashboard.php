@@ -63,6 +63,25 @@
           echo("Create Syntax is Wrong"); 
         }
       }
+
+      //Insert to table
+      elseif((trim($keywords[0]) === "i")){
+        if($count > 2){
+          $sql = "insert into `$user`.`$keywords[1]` values(";
+          
+          for($i = 2; $i < $count; $i++){
+            $keywords[$i] = trim($keywords[$i]);
+            $sql .= "'$keywords[$i]', ";
+          }        
+          $keywords[$i] = trim($keywords[$i]);
+          $sql .= "'$keywords[$i]' )";
+          
+          echo $sql;
+          if($conn->query($sql))
+            echo "Insert Success";
+        }
+      } 
+
       //remove schema
       elseif((trim($keywords[0]) === "r")){
         if($count < 1){
@@ -96,28 +115,56 @@
     $conn->close();           
 ?>
   <center>
-    <h1>Schema named "<?=$user?>" is successfully Created</h1>
+    <h1>Schema: <?=$user?></h1>
   <h1>
   <form autocomplete="off" action="../dashboard.php/?user=<?=$user?>" method="post"> 
   <input type="text" name="qry" placeholder="Query here"/> 
   <input type="submit" name="SubmitButton"/> 
   </form>
-<?php
+  </center>
+
+  <?php
   $conn = new mysqli('127.0.0.1:3306', 'root', '', 'miniW');
   $sql = "select tbl from `miniW`.`tbls` where user='$user'";
   $result = $conn->query($sql);
-  echo "<table><th><td>Your Tables</td></th>";
   while($row = mysqli_fetch_assoc($result)){
-    echo ("<tr><td>".$row['tbl']."</tr></td>");
+    $tbl = $row['tbl'];
+    echo "<div class='tables' style='float: right'><h1>$tbl</h1>";
+    echo "<table>";    
+
+    $sql2 = "select * from `$user`.`$tbl`";
+    $trows = $conn->query($sql2);
+    
+    for ($set = array (); $trow = $trows->fetch_assoc(); $set[] = $trow);
+      for($i = 0; $i < count($set); $i++){
+        echo "<tr>";
+        for($j = 0; $j < count($set[$i]); $j++){          
+          echo("<th>" . array_keys($set[$i])[$j] . "</th>");   
+        }
+        echo "</tr>";
+      }                      
+    
+    for($i = 0; $i < count($set); $i++){
+      echo "<tr>";
+      for($j = 0; $j < count($set[$i]); $j++){        
+        echo("<td>" .array_values($set[$i])[$j]. "</td>");        
+      }
+      echo "</tr>";
+    }               
+    echo "</table></div><br>";
   }
-  echo "</table>";
+  
   $conn->close();
   ?>
 
   <h2>---Syntax---</h2>
   <h3>Create Table</h3><p><b>></b> c &nbsp;&nbsp;&lt;tableName&gt;&nbsp;&nbsp; [&lt;Columns...&gt;]</p>
+  <h3>Insert to table</h3><p><b>></b> i &nbsp;&nbsp;&lt;tableName&gt;&nbsp;&nbsp; [&lt;Values...&gt;]</p>
   <h3>Drop Table</h3><p><b>></b> d &nbsp;&nbsp;&lt;tableName&gt;</p>
   <h3>Drop Schema</h3><p><b>></b> r</p>
+
+  <center>
+  
   </center>
   </body>
 </html>
