@@ -1,6 +1,31 @@
 <html>
   <head>
     <title>Dashboard</title>
+    <style>
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      li {
+        float: left;
+      }
+
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover {
+        background-color: #111;
+      }
+    </style>
   </head>
   <body>
   <?php  
@@ -52,7 +77,7 @@
           $sql .= "$keywords[$i] varchar(50) )";
           
           if($conn->query($sql)){
-            echo "Table Created Successfully";
+            
             $sql = "insert into `miniW`.`tbls` values('$user', '$keywords[1]')";
             $conn->query($sql);
 
@@ -120,6 +145,12 @@
     }  
     $conn->close();           
 ?>
+  <ul>
+  <li><a class="active" href="./?user=<?=$user?>">Schema</a></li>
+  <li><a href="../syntax.html">Syntax</a></li>
+  <li><a href="../about.html">About</a></li>
+  <li style="float: right;"><a href="../index.html">Logout</a></li>
+</ul>
   <center>
     <h1>Schema: <?=$user?></h1>
   <h1>
@@ -136,8 +167,8 @@
   $result = $conn->query($sql);
   while($row = mysqli_fetch_assoc($result)){
     $tbl = $row['tbl'];
-    echo "<div class='tables' style='float: right'><h1>$tbl</h1>";
-    echo "<table>";    
+    echo "<div class='tables' ><h1>$tbl</h1>";
+    echo "<table style='display: inline;'>";    
 
     $sql2 = "select * from `$user`.`$tbl`";
     $trows = $conn->query($sql2);
@@ -158,19 +189,12 @@
       }
       echo "</tr>";
     }               
-    echo "</table></div><br>";
+    echo "</table></div>";
   }
   
   $conn->close();
   ?>
-
-  <h2>---Syntax---</h2>
-  <h3>Create Table</h3><p><b>></b> c &nbsp;&nbsp;&lt;tableName&gt;&nbsp;&nbsp; [&lt;Columns...&gt;]</p>
-  <h3>Insert to table</h3><p><b>></b> i &nbsp;&nbsp;&lt;tableName&gt;&nbsp;&nbsp; [&lt;Values...&gt;]</p>
-  <h3>Drop Table</h3><p><b>></b> d &nbsp;&nbsp;&lt;tableName&gt;</p>
-  <h3>Drop Schema</h3><p><b>></b> r</p>
-
-  <input type="submit" onclick="window.location = '../index.html'" value="Logout"/>
+  
   <center>
   
   </center>
