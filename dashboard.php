@@ -55,6 +55,13 @@
             echo "Table Created Successfully";
             $sql = "insert into `miniW`.`tbls` values('$user', '$keywords[1]')";
             $conn->query($sql);
+
+            $inNull = "insert into `$user`.`$keywords[1]` values( ";
+            for($i = 2; $i < $count; $i++){
+              $inNull .= "' ', ";
+            }        
+            $inNull .= "' ' )";
+            $conn->query($inNull);
           } else {
             echo "Oops, table already exists..";
           }            
@@ -66,7 +73,8 @@
 
       //Insert to table
       elseif((trim($keywords[0]) === "i")){
-        if($count > 2){
+        if($count > 1){
+          $keywords[1] = trim($keywords[1]);
           $sql = "insert into `$user`.`$keywords[1]` values(";
           
           for($i = 2; $i < $count; $i++){
@@ -76,9 +84,7 @@
           $keywords[$i] = trim($keywords[$i]);
           $sql .= "'$keywords[$i]' )";
           
-          echo $sql;
-          if($conn->query($sql))
-            echo "Insert Success";
+          $conn->query($sql);         
         }
       } 
 
@@ -124,6 +130,7 @@
   </center>
 
   <?php
+  //Retreive Tables per User
   $conn = new mysqli('127.0.0.1:3306', 'root', '', 'miniW');
   $sql = "select tbl from `miniW`.`tbls` where user='$user'";
   $result = $conn->query($sql);
@@ -136,13 +143,13 @@
     $trows = $conn->query($sql2);
     
     for ($set = array (); $trow = $trows->fetch_assoc(); $set[] = $trow);
-      for($i = 0; $i < count($set); $i++){
+      // for($i = 0; $i < count($set); $i++){
         echo "<tr>";
-        for($j = 0; $j < count($set[$i]); $j++){          
-          echo("<th>" . array_keys($set[$i])[$j] . "</th>");   
+        for($j = 0; $j < count($set[0]); $j++){          
+          echo("<th>" . array_keys($set[0])[$j] . "</th>");   
         }
         echo "</tr>";
-      }                      
+      // }                      
     
     for($i = 0; $i < count($set); $i++){
       echo "<tr>";
@@ -163,6 +170,7 @@
   <h3>Drop Table</h3><p><b>></b> d &nbsp;&nbsp;&lt;tableName&gt;</p>
   <h3>Drop Schema</h3><p><b>></b> r</p>
 
+  <input type="submit" onclick="window.location = '../index.html'" value="Logout"/>
   <center>
   
   </center>
