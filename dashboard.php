@@ -17,14 +17,7 @@
     }
     
     $user = $_GET["user"];    
-    // $sql = "select * from tbls where user=$user";
-    // $result = $conn->query($sql);
-    // if($result) {
-    //   while($row = mysqli_fetch_assoc($result)) {
-    //     echo $row["tbl"];
-    //   }
-    // }
-    
+
     if(isset($_POST['SubmitButton'])){ //check if form was submitted
       $qry = $_POST['qry']; //get query    
       $qry = trim($qry);
@@ -43,8 +36,12 @@
       }
       $keywords[$count] = $keyword;
       
+      if (trim($keywords[0]) === "exit" || trim($keywords[0]) === "logout") {
+        echo "<script>window.location = '../index.php';</script>";
+      }
+
       //Create Table Syntax <c> <tableName> <columns...>            
-      if (trim($keywords[0]) === "c"){  
+      elseif (trim($keywords[0]) === "c"){  
         if($count > 1){
           $keywords[1] = trim($keywords[1]);      
           $sql = "CREATE TABLE `$user`.`$keywords[1]` ( id_id_id int, ";
@@ -98,7 +95,7 @@
           $sql = "DROP DATABASE `$user`";
           $conn->query($sql);          
                                          
-          echo "<script>window.location = '../index.html';</script>";                
+          echo "<script>window.location = '../index.php';</script>";                
           $sql = "delete from `miniW`.`tbls` where user='$user'";
           $conn->query($sql);              
           $sql = "delete from `miniW`.`login` where uid='$user'";
@@ -164,7 +161,7 @@
         <a href="#" onclick="updateCMD(document.getElementById('t').innerHTML)"><h3>Truncate Table</h3><p id="t">t tableName</p></a>
       </div>      
     </div> 
-    <a href="../index.html">Logout</a>
+    <a href="../index.php">Logout</a>
   </div>
   </div>
   
@@ -181,8 +178,8 @@
   $result = $conn->query($sql);  
   while($row = mysqli_fetch_assoc($result)){
     $tbl = $row['tbl'];
-    echo "<div class='tables container' ><h4 class='yellow'>$tbl</h4>";
-    echo "<table style='margin: 10px; width:70%;' >";    
+    echo "<div class='tables' style='margin-left:20%;'><h4 class='yellow'>$tbl</h4>";
+    echo "<table style='width:70%;margin-left:0%;' class='container' >";    
     $sql2 = "select * from `$user`.`$tbl`";
     $trows = $conn->query($sql2);
     
@@ -219,6 +216,7 @@
   </form>
   
   <script>
+    document.getElementById('cmd').focus();
     function updateCMD(val){
       var cmd = document.getElementById("cmd");
       cmd.value = val;
