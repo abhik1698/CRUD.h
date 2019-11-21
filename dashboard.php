@@ -91,7 +91,7 @@
 
       //remove schema
       elseif((trim($keywords[0]) === "r")){
-        if($count < 1){
+        if($count < 2){
           $sql = "DROP DATABASE `$user`";
           $conn->query($sql);          
                                          
