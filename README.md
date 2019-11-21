@@ -5,10 +5,10 @@ Create a Database named miniW with 2 tables
 Tables like
 
 Login -> uid, pwd
-primary key(uid)
+>primary key(uid)
 
 Tbls -> user, tbl 
-primary key(user, tbl)
+>primary key(user, tbl)
 
 >all in VarChar
 
