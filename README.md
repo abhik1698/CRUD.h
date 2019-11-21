@@ -1,6 +1,6 @@
 # CRUD.h
 
-Create a DB named miniW with 2 tables
+Create a Database named miniW with 2 tables
 
 Tables like
 
@@ -12,6 +12,6 @@ primary key(user, tbl)
 
 >all in VarChar
 
-Update your server connection with username & password with host
+Update MySQL server connection with username, password & host in index.php, schema.php & dashboard.php (2 lines)
 
 >Run with server
