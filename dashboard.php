@@ -2,6 +2,7 @@
   <head>
     <title>Dashboard</title>
     <style>
+      <?php include 'dashboard.css'; ?>
       ul {
         list-style-type: none;
         margin: 0;
@@ -25,6 +26,28 @@
       li a:hover {
         background-color: #111;
       }
+
+      label,
+      textarea {
+          font-size: .8rem;
+          letter-spacing: 1px;
+      }
+      textarea {
+          background-color: black;
+          color: green;
+          width: 500px;
+          height: 50px;
+          font-size: 2rem;
+          line-height: 1.5;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          box-shadow: 1px 1px 1px #999;
+      }
+      label {
+          display: block;
+          margin-bottom: 10px;
+      }
+
     </style>
   </head>
   <body>
@@ -38,18 +61,18 @@
     }
     
     $user = $_GET["user"];
-    $sql = "select * from tbls where user=$user";
-    $result = $conn->query($sql);
-    if($result) {
-      while($row = mysqli_fetch_assoc($result)) {
-        echo $row["tbl"];
-      }
-    }
+    // $sql = "select * from tbls where user=$user";
+    // $result = $conn->query($sql);
+    // if($result) {
+    //   while($row = mysqli_fetch_assoc($result)) {
+    //     echo $row["tbl"];
+    //   }
+    // }
     
     if(isset($_POST['SubmitButton'])){ //check if form was submitted
       $qry = $_POST['qry']; //get query    
       $qry = trim($qry);
-      unset($keyword); unset($keywords);
+      unset($keyword);
       $count = 0; 
       $keyword = "";
       $keywords = [];
@@ -65,10 +88,10 @@
       $keywords[$count] = $keyword;
       
       //Create Table Syntax <c> <tableName> <columns...>            
-      if ((trim($keywords[0]) === "c")){  
+      if (trim($keywords[0]) === "c"){  
         if($count > 1){
           $keywords[1] = trim($keywords[1]);      
-          $sql = "CREATE TABLE `$user`.`$keywords[1]` ( ";
+          $sql = "CREATE TABLE `$user`.`$keywords[1]` ( id_id_id int, ";
           for($i = 2; $i < $count; $i++){
             $keywords[$i] = trim($keywords[$i]);
             $sql .= "$keywords[$i] varchar(50), ";
@@ -81,7 +104,7 @@
             $sql = "insert into `miniW`.`tbls` values('$user', '$keywords[1]')";
             $conn->query($sql);
 
-            $inNull = "insert into `$user`.`$keywords[1]` values( ";
+            $inNull = "insert into `$user`.`$keywords[1]` values(0, ";
             for($i = 2; $i < $count; $i++){
               $inNull .= "' ', ";
             }        
@@ -100,7 +123,7 @@
       elseif((trim($keywords[0]) === "i")){
         if($count > 1){
           $keywords[1] = trim($keywords[1]);
-          $sql = "insert into `$user`.`$keywords[1]` values(";
+          $sql = "insert into `$user`.`$keywords[1]` values(1, ";
           
           for($i = 2; $i < $count; $i++){
             $keywords[$i] = trim($keywords[$i]);
@@ -141,7 +164,23 @@
         }
         $sql = "delete from `miniW`.`tbls` where user='$user' and tbl='$keywords[1]'";
         $conn->query($sql);        
-      }                                  
+      }
+
+      //Truncate Table truncate `3`.ab;
+      elseif((trim($keywords[0]) === "t")){  
+        if($count == 1){
+          $keywords[1] = trim($keywords[1]);      
+          $sql = "delete from `$user`.`$keywords[1]` where id_id_id <> 0";
+        
+          if($conn->query($sql)){
+            echo "Removed all rows Successfully";                
+          } else {
+            echo "No such table exists..";
+          }
+        } else {
+          echo("Truncate Syntax is Wrong"); 
+        }                  
+      }
     }  
     $conn->close();           
 ?>
@@ -155,48 +194,45 @@
     <h1>Schema: <?=$user?></h1>
   <h1>
   <form autocomplete="off" action="../dashboard.php/?user=<?=$user?>" method="post"> 
-  <input type="text" name="qry" placeholder="Query here"/> 
-  <input type="submit" name="SubmitButton"/> 
-  </form>
-  </center>
+  <label for="qry">Query here</label>
+  ><textarea id="qry" name="qry" placeholder="c tableName Column1 Column2..."></textarea> 
+  <input type="submit" class='button' value="run" name="SubmitButton"/> 
 
   <?php
   //Retreive Tables per User
   $conn = new mysqli('127.0.0.1:3306', 'root', '', 'miniW');
   $sql = "select tbl from `miniW`.`tbls` where user='$user'";
-  $result = $conn->query($sql);
+  $result = $conn->query($sql);  
   while($row = mysqli_fetch_assoc($result)){
     $tbl = $row['tbl'];
-    echo "<div class='tables' ><h1>$tbl</h1>";
-    echo "<table style='display: inline;'>";    
-
+    echo "<div class='tables container' ><h4 class='yellow'>$tbl</h4>";
+    echo "<table style='margin: 10px; width:50%;' >";    
     $sql2 = "select * from `$user`.`$tbl`";
     $trows = $conn->query($sql2);
     
     for ($set = array (); $trow = $trows->fetch_assoc(); $set[] = $trow);
       // for($i = 0; $i < count($set); $i++){
         echo "<tr>";
-        for($j = 0; $j < count($set[0]); $j++){          
-          echo("<th>" . array_keys($set[0])[$j] . "</th>");   
+        for($j = 1; $j < count($set[0]); $j++){          
+          echo("<th >" . array_keys($set[0])[$j] . "</th>");   
         }
         echo "</tr>";
       // }                      
     
-    for($i = 0; $i < count($set); $i++){
+    for($i = 1; $i < count($set); $i++){
       echo "<tr>";
-      for($j = 0; $j < count($set[$i]); $j++){        
+      for($j = 1; $j < count($set[$i]); $j++){        
         echo("<td>" .array_values($set[$i])[$j]. "</td>");        
       }
       echo "</tr>";
     }               
-    echo "</table></div>";
-  }
-  
+    echo "</table></div>". "><textarea id='qry' name='qry' placeholder='c tableName Column1 Column2...'></textarea>";  
+    echo "<input type='submit' class='button' value='run' name='SubmitButton' />";
+  }  
   $conn->close();
   ?>
-  
-  <center>
-  
+
   </center>
+  </form>
   </body>
 </html>
