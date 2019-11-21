@@ -1,53 +1,9 @@
 <html>
   <head>
     <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-      <?php include 'dashboard.css'; ?>
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-      }
-
-      li {
-        float: left;
-      }
-
-      li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-      }
-
-      li a:hover {
-        background-color: #111;
-      }
-
-      label,
-      textarea {
-          font-size: .8rem;
-          letter-spacing: 1px;
-      }
-      textarea {
-          background-color: black;
-          color: green;
-          width: 500px;
-          height: 50px;
-          font-size: 2rem;
-          line-height: 1.5;
-          border-radius: 5px;
-          border: 1px solid #ccc;
-          box-shadow: 1px 1px 1px #999;
-      }
-      label {
-          display: block;
-          margin-bottom: 10px;
-      }
-
+      <?php include 'dashboard.css'; ?>      
     </style>
   </head>
   <body>
@@ -60,7 +16,7 @@
       die("Connection failed: " . $conn->connect_error);
     }
     
-    $user = $_GET["user"];
+    $user = $_GET["user"];    
     // $sql = "select * from tbls where user=$user";
     // $result = $conn->query($sql);
     // if($result) {
@@ -181,32 +137,52 @@
           echo("Truncate Syntax is Wrong"); 
         }                  
       }
-    }  
-    $conn->close();           
+    }          
 ?>
-  <ul>
-  <li><a class="active" href="./?user=<?=$user?>">Schema</a></li>
-  <li><a href="../syntax.html">Syntax</a></li>
-  <li><a href="../about.html">About</a></li>
-  <li style="float: right;"><a href="../index.html">Logout</a></li>
-</ul>
+
+<div class="header" style="position: fixed;
+    right: 0;
+    top: 0;">
+  <div class="navbar" >
+    <a href="./?user=<?=$user?>">Schema</a>  
+    <div class="dropdown">
+      <button class="dropbtn">DDL Syntax 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+      <a onclick="updateCMD(document.getElementById('c').innerHTML)"><h3>Create Table</h3><p id="c">c tableName Columns...</p></a>        
+        <a href="#" onclick="updateCMD(document.getElementById('d').innerHTML)" ><h3>Drop Table</h3><p id="d">d tableName</p></a>
+        <a href="#" onclick="updateCMD(document.getElementById('r').innerHTML)"><h3>Drop Schema</h3><p id="r">r</p></a>        
+      </div>      
+    </div> 
+    <div class="dropdown">
+      <button class="dropbtn">DML Syntax 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">        
+        <a href="#" onclick="updateCMD(document.getElementById('i').innerHTML)"><h3>Insert to Table</h3><p id="i">i tableName values...</p></a>    
+        <a href="#" onclick="updateCMD(document.getElementById('t').innerHTML)"><h3>Truncate Table</h3><p id="t">t tableName</p></a>
+      </div>      
+    </div> 
+    <a href="../index.html">Logout</a>
+  </div>
+  </div>
+  
   <center>
     <h1>Schema: <?=$user?></h1>
-  <h1>
+    </center>  
+    
   <form autocomplete="off" action="../dashboard.php/?user=<?=$user?>" method="post"> 
-  <label for="qry">Query here</label>
-  ><textarea id="qry" name="qry" placeholder="c tableName Column1 Column2..."></textarea> 
-  <input type="submit" class='button' value="run" name="SubmitButton"/> 
-
-  <?php
+  
+  <?php  
   //Retreive Tables per User
-  $conn = new mysqli('127.0.0.1:3306', 'root', '', 'miniW');
+  // $conn = new mysqli('127.0.0.1:3306', 'root', '', 'miniW');
   $sql = "select tbl from `miniW`.`tbls` where user='$user'";
   $result = $conn->query($sql);  
   while($row = mysqli_fetch_assoc($result)){
     $tbl = $row['tbl'];
     echo "<div class='tables container' ><h4 class='yellow'>$tbl</h4>";
-    echo "<table style='margin: 10px; width:50%;' >";    
+    echo "<table style='margin: 10px; width:70%;' >";    
     $sql2 = "select * from `$user`.`$tbl`";
     $trows = $conn->query($sql2);
     
@@ -226,13 +202,27 @@
       }
       echo "</tr>";
     }               
-    echo "</table></div>". "><textarea id='qry' name='qry' placeholder='c tableName Column1 Column2...'></textarea>";  
-    echo "<input type='submit' class='button' value='run' name='SubmitButton' />";
+    echo "</table></div>";      
   }  
   $conn->close();
   ?>
-
-  </center>
+  <div class="footer"style="position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 90%;   
+   text-align: center;   
+   display: flex;
+   margin-left: 3px;" >   
+  <input id="cmd" name="qry" style="width: 100%; margin: 10px; " placeholder="c tableName Column1 Column2..."/>
+  <input style="width: 15%;  margin: 10px;" type="submit" class='run' value="run" name="SubmitButton"/>     
+  </div>
   </form>
+  
+  <script>
+    function updateCMD(val){
+      var cmd = document.getElementById("cmd");
+      cmd.value = val;
+    }
+  </script>
   </body>
 </html>
