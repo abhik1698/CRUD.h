@@ -29,6 +29,7 @@
         <a href="#"><h3>Truncate Table</h3><p>t tableName</p></a>
       </div>      
     </div> 
+    <a href="../About.html">About</a>
     <a onclick="document.getElementById('id01').style.display='block'" type="submit" style="width:auto; float: right;">Login to Schema</a>
   </div>
   </div>

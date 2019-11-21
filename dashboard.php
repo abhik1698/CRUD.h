@@ -141,15 +141,33 @@
           $keywords[1] = trim($keywords[1]);      
           $keywords[2] = trim($keywords[2]);      
           $keywords[3] = trim($keywords[3]);      
-          $sql = "delete from `$user`.`$keywords[1]` where $keywords[2]='$keywords[3]' <> 0";
+          $sql = "delete from `$user`.`$keywords[1]` where $keywords[2]='$keywords[3]'";
         
           if($conn->query($sql)){
             echo "Deleted Successfully";                
           } else {
-            echo "No such table exists..";
+            echo "Couldn't Delete";
           }
         } else {
           echo("Delete Syntax is Wrong"); 
+        }                  
+      }
+
+      //Update row
+      elseif((trim($keywords[0]) === "u")){  
+        if($count >= 5){
+          $keywords[1] = trim($keywords[1]);      
+          $keywords[2] = trim($keywords[2]);      
+          $keywords[3] = trim($keywords[3]);      
+          $sql = "update `$user`.`$keywords[1]` set $keywords[4]='$keywords[5]' where $keywords[2]='$keywords[3]'";
+        
+          if($conn->query($sql)){
+            echo "Updated Successfully";                
+          } else {
+            echo "Couldn't Update";
+          }
+        } else {
+          echo("Update Syntax is Wrong"); 
         }                  
       }
     }          
@@ -176,10 +194,12 @@
       </button>
       <div class="dropdown-content">        
         <a href="#" onclick="updateCMD(document.getElementById('i').innerHTML)"><h3>Insert to Table</h3><p id="i">i tableName values...</p></a>    
+        <a href="#" onclick="updateCMD(document.getElementById('u').innerHTML)"><h3>Update Row</h3><p id="u">u tableName Column1 Value1 Column Value</p></a>    
         <a href="#" onclick="updateCMD(document.getElementById('d').innerHTML)"><h3>Delete Row</h3><p id="d">d tableName Column1 Value1</p></a>    
         <a href="#" onclick="updateCMD(document.getElementById('t').innerHTML)"><h3>Truncate Table</h3><p id="t">t tableName</p></a>
       </div>      
     </div> 
+    <a href="../About.html">About</a>
     <a href="../index.php">Logout</a>
   </div>
   </div>
