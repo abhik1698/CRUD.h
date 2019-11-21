@@ -209,7 +209,7 @@
    width: 90%;   
    text-align: center;   
    display: flex;
-   margin-left: 3px;" >   
+   margin-left: 3px;" > <h3>Query goes here --*></h3> 
   <input id="cmd" name="qry" style="width: 100%; margin: 10px; " placeholder="c tableName Column1 Column2..."/>
   <input style="width: 15%;  margin: 10px;" type="submit" class='run' value="run" name="SubmitButton"/>     
   </div>
