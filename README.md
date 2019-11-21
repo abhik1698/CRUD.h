@@ -10,7 +10,7 @@ Login -> uid, pwd
 Tbls -> user, tbl 
 >primary key(user, tbl)
 
->all in VarChar
+>All in VarChar datatype
 
 Update MySQL server connection with [username, password & host] in [index.php, schema.php & dashboard.php (2 lines)]
 
