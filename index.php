@@ -25,7 +25,9 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">        
-        <a href="#"><h3>Insert to Table</h3><p>i tableName values...</p></a>    
+        <a href="#"><h3>Insert to Table</h3><p>i tableName values...</p></a>  
+        <a href="#"><h3>Update Row</h3><p>u tableName Column1 Value1 Column Value</p></a>    
+        <a href="#"><h3>Delete Row</h3><p>d tableName Column1 Value1</p></a>      
         <a href="#"><h3>Truncate Table</h3><p>t tableName</p></a>
       </div>      
     </div> 
