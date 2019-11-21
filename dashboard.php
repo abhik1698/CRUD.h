@@ -50,7 +50,7 @@
             $sql .= "$keywords[$i] varchar(50), ";
           }        
           $keywords[$i] = trim($keywords[$i]);
-          $sql .= "$keywords[$i] varchar(50) )";
+          $sql .= "$keywords[$i] varchar(50), primary key($keywords[2]) )";
           
           if($conn->query($sql)){
             
@@ -104,7 +104,7 @@
       } 
 
       //Drop Table
-      elseif((trim($keywords[0]) === "d")){  
+      elseif((trim($keywords[0]) === "dr")){  
         $keywords[1] = trim($keywords[1]);      
         $sql = "DROP TABLE `$user`.`$keywords[1]`";             
         if($count != 1){
@@ -134,6 +134,24 @@
           echo("Truncate Syntax is Wrong"); 
         }                  
       }
+
+      //Delete row
+      elseif((trim($keywords[0]) === "d")){  
+        if($count >= 3){
+          $keywords[1] = trim($keywords[1]);      
+          $keywords[2] = trim($keywords[2]);      
+          $keywords[3] = trim($keywords[3]);      
+          $sql = "delete from `$user`.`$keywords[1]` where $keywords[2]='$keywords[3]' <> 0";
+        
+          if($conn->query($sql)){
+            echo "Deleted Successfully";                
+          } else {
+            echo "No such table exists..";
+          }
+        } else {
+          echo("Delete Syntax is Wrong"); 
+        }                  
+      }
     }          
 ?>
 
@@ -148,7 +166,7 @@
       </button>
       <div class="dropdown-content">
       <a onclick="updateCMD(document.getElementById('c').innerHTML)"><h3>Create Table</h3><p id="c">c tableName Columns...</p></a>        
-        <a href="#" onclick="updateCMD(document.getElementById('d').innerHTML)" ><h3>Drop Table</h3><p id="d">d tableName</p></a>
+        <a href="#" onclick="updateCMD(document.getElementById('dr').innerHTML)" ><h3>Drop Table</h3><p id="dr">dr tableName</p></a>
         <a href="#" onclick="updateCMD(document.getElementById('r').innerHTML)"><h3>Drop Schema</h3><p id="r">r</p></a>        
       </div>      
     </div> 
@@ -158,6 +176,7 @@
       </button>
       <div class="dropdown-content">        
         <a href="#" onclick="updateCMD(document.getElementById('i').innerHTML)"><h3>Insert to Table</h3><p id="i">i tableName values...</p></a>    
+        <a href="#" onclick="updateCMD(document.getElementById('d').innerHTML)"><h3>Delete Row</h3><p id="d">d tableName Column1 Value1</p></a>    
         <a href="#" onclick="updateCMD(document.getElementById('t').innerHTML)"><h3>Truncate Table</h3><p id="t">t tableName</p></a>
       </div>      
     </div> 
