@@ -108,7 +108,7 @@
         }        
         }      
         ?>
-    <script>
+    <scri pt>
       function updateLogin(val){
         document.getElementById('id01').style.display='block';
         document.getElementById('uid').value= val;
