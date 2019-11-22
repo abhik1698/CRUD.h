@@ -3,7 +3,7 @@
     <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-      <?php include 'dashboard.css'; ?>      
+      <?php include 'dashboard.css'; include 'index.css'; ?>      
     </style>
   </head>
   <body>
@@ -199,7 +199,7 @@
         <a href="#" onclick="updateCMD(document.getElementById('t').innerHTML)"><h3>Truncate Table</h3><p id="t">t tableName</p></a>
       </div>      
     </div> 
-    <a href="../About.html">About</a>
+    <a onclick="document.getElementById('about').style.display='block'" type="submit" style="width:auto;">About</a>
     <a href="../index.php">Logout</a>
   </div>
   </div>
@@ -242,6 +242,7 @@
   }  
   $conn->close();
   ?>
+  </br></br>
   <div class="footer"style="position: fixed;
    left: 0;
    bottom: 0;
@@ -253,6 +254,22 @@
   <input style="width: 15%;  margin: 10px;" type="submit" class='run' value="run" name="SubmitButton"/>     
   </div>
   </form>
+
+  <div id="about" class="modal">  
+  <form class="modal-content animate">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('about').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="../src/aboutBG.jpg" alt="About us" class="avatar"/>
+    </div>
+
+    <div class="container">      
+    <center><h1>&lt;CRUD.h&gt;</h1></center>
+    <h2>MySQL shorthand tool to manage database very quickly like a Journalist. </br></br>Follow 
+      the specified syntax to Manipulate Data. </br></br><b style="color: #4DC3FA;">Components used </b></br></br> HTML, CSS, JavaScript, PHP, MySQL
+    </h2>
+    </div>               
+  </form>
+</div>
   
   <script>
     document.getElementById('cmd').focus();
@@ -260,6 +277,16 @@
       var cmd = document.getElementById("cmd");
       cmd.value = val;
     }
+
+    // Get the modal
+    var modal = document.getElementById('about');
+      
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+      }
   </script>
   </body>
 </html>

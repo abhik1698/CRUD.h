@@ -31,7 +31,7 @@
         <a href="#"><h3>Truncate Table</h3><p>t tableName</p></a>
       </div>      
     </div> 
-    <a href="../About.html">About</a>
+    <a onclick="document.getElementById('about').style.display='block'" type="submit" style="width:auto;">About</a>
     <a onclick="document.getElementById('id01').style.display='block'" type="submit" style="width:auto; float: right;">Login to Schema</a>
   </div>
   </div>
@@ -43,12 +43,12 @@
     
     <div id="id01" class="modal">
   
-        <form class="modal-content animate" action="schema.php" method="post">
+        <form class="modal-content animate" action="schema.php" method="post">  
           <div class="imgcontainer">
             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-            <img src="src/db.jpg" alt="Avatar" class="avatar">
-          </div>
-      
+            <h1>Login / Sign Up</h1>
+            <img src="src/loginBG.png" style="border-radius: 100%;" alt="Avatar" class="avatar">
+          </div>      
           <div class="container">      
             <input type="text" placeholder="schemaName" id='uid' name="uid" required>
                   
@@ -59,6 +59,22 @@
           </div>               
         </form>
       </div>
+
+      <div id="about"  class="modal">  
+  <form style="background-color:#1F2739;" class="modal-content animate">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('about').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="src/aboutBG.jpg" alt="About us" class="avatar"/>
+    </div>
+
+    <div class="container">      
+    <center><h1>&lt;CRUD.h&gt;</h1></center>
+    <h2>MySQL shorthand tool to manage database very quickly like a Journalist. </br></br>Follow 
+      the specified syntax to Manipulate Data. </br></br><b style="color: #4DC3FA;">Components used </b></br></br> HTML, CSS, JavaScript, PHP, MySQL
+    </h2>
+    </div>               
+  </form>
+</div>
       
       <?php  
 
@@ -97,6 +113,7 @@
               modal.style.display = "none";
           }
       }
+
       </script>
   </body>
 </html>
