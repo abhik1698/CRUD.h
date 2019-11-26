@@ -60,7 +60,7 @@
     <h2 style="color:white;">&lt;CRUD.h&gt;</h2>
     </center>
     <div id="id01" class="modal">
-      <form class="modal-content animate" action="schema.php" method="post">
+      <form class="modal-content animate"  method="post">
         <div class="imgcontainer">
           <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
           <h1>Login / Sign Up</h1>
@@ -69,9 +69,43 @@
         <div class="container">      
           <input type="text" placeholder="schemaName" id='uid' name="uid" required>
           <input type="password" placeholder="Password" id='pwd' name="pwd" required>
-          <button type="submit">Run Schema</button>
+          <button type="submit" name="login">Run Schema</button>
         </div>
       </form>
+      <?php //Authentication
+      if(isset($_POST['login'])){        
+        // Create connection
+        $conn = new mysqli('127.0.0.1:3306', 'root', '', 'miniW');        
+        // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }        
+        $username =  $_POST['uid'];
+        $password =  $_POST['pwd'];
+        //Check user exists for usernmae & password given
+        $sql = "select uid from login where uid='$username'";
+        $result = $conn->query($sql);
+        
+        if ($result->num_rows < 1) {
+            $sql = "insert into login(uid, pwd) values('$username', '$password')";
+            $conn->query($sql);
+            $sql = "CREATE SCHEMA `$username`";
+            $conn->query($sql);
+            echo "<script>window.location = 'dashboard.php/?user=$username';</script>"; //Reg success
+            // echo "Hi newbie";
+        } else {
+            $sql = "select uid from login where uid='$username' and pwd='$password'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {        
+                echo "<script>window.location = 'dashboard.php/?user=$username';</script>"; //Reg success
+                // echo "Hi oldie";
+            } else {
+                echo "<script>alert('Credentials Mismatch');</script>";
+            }
+        } 
+        $conn->close();  
+      }?>
+
     </div>
     <div id="about"  class="modal">
       <form style="background-color:#1F2739;" class="modal-content animate">
