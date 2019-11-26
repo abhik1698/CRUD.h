@@ -73,7 +73,7 @@
         </div>
       </form>
       <?php //Authentication
-      if(isset($_POST['login'])){        
+      if(isset($_POST['login'])) {        
         // Create connection
         $conn = new mysqli('127.0.0.1:3306', 'root', '', 'miniW');        
         // Check connection
