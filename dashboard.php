@@ -181,15 +181,15 @@
           <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a onclick="updateCMD(document.getElementById('c').innerHTML)">
+            <a onclick="updateCMD('c ')">
               <h3>Create Table</h3>
               <p id="c">c tableName Columns...</p>
             </a>
-            <a href="#" onclick="updateCMD(document.getElementById('dr').innerHTML)" >
+            <a href="#" onclick="updateCMD('dr ')" >
               <h3>Drop Table</h3>
               <p id="dr">dr tableName</p>
             </a>
-            <a href="#" onclick="updateCMD(document.getElementById('r').innerHTML)">
+            <a href="#" onclick="updateCMD('r ')">
               <h3>Drop Schema</h3>
               <p id="r">r</p>
             </a>
@@ -200,19 +200,19 @@
           <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a href="#" onclick="updateCMD(document.getElementById('i').innerHTML)">
+            <a href="#" onclick="updateCMD('i ')">
               <h3>Insert to Table</h3>
               <p id="i">i tableName values...</p>
             </a>
-            <a href="#" onclick="updateCMD(document.getElementById('u').innerHTML)">
+            <a href="#" onclick="updateCMD('u ')">
               <h3>Update Row</h3>
               <p id="u">u tableName Column1 Value1 Column Value</p>
             </a>
-            <a href="#" onclick="updateCMD(document.getElementById('d').innerHTML)">
+            <a href="#" onclick="updateCMD('d ')">
               <h3>Delete Row</h3>
               <p id="d">d tableName Column1 Value1</p>
             </a>
-            <a href="#" onclick="updateCMD(document.getElementById('t').innerHTML)">
+            <a href="#" onclick="updateCMD('t ')">
               <h3>Truncate Table</h3>
               <p id="t">t tableName</p>
             </a>
@@ -223,7 +223,8 @@
       </div>
     </div>
     <center>
-      <h1>Schema: <?=$user?></h1>
+    <h2 style="color:white;">&lt;CRUD.h&gt;</h2>
+      <h1>Schema: <?=$user?></h1>      
     </center>
     <form autocomplete="off" action="../dashboard.php/?user=<?=$user?>" method="post">
       <?php  
@@ -233,7 +234,7 @@
         $result = $conn->query($sql);  
         while($row = mysqli_fetch_assoc($result)){
           $tbl = $row['tbl'];
-          echo "<div class='tables' style='margin-left:20%;'><h4 class='yellow'>$tbl</h4>";
+          echo "<div class='tables' style='margin-left:20%;'><h4 class='yellow' onclick='updateCMD(this.innerHTML, 1)'>$tbl</h4>";
           echo "<table style='width:70%;margin-left:0%;' class='container' >";    
           $sql2 = "select * from `$user`.`$tbl`";
           $trows = $conn->query($sql2);
@@ -242,7 +243,7 @@
             // for($i = 0; $i < count($set); $i++){
               echo "<tr>";
               for($j = 1; $j < count($set[0]); $j++){          
-                echo("<th >" . array_keys($set[0])[$j] . "</th>");   
+                echo("<th onclick='updateCMD(this.innerHTML, 1)'>" . array_keys($set[0])[$j] . "</th>");   
               }
               echo "</tr>";
             // }                      
@@ -250,7 +251,7 @@
           for($i = 1; $i < count($set); $i++){
             echo "<tr>";
             for($j = 1; $j < count($set[$i]); $j++){        
-              echo("<td>" .array_values($set[$i])[$j]. "</td>");        
+              echo("<td onclick='updateCMD(this.innerHTML, 1)'>" .array_values($set[$i])[$j]. "</td>");        
             }
             echo "</tr>";
           }               
@@ -265,10 +266,12 @@
         width: 90%;   
         text-align: center;   
         display: flex;
-        margin-left: 3px;" >
+        margin-left: 3px;" >       
         <h3>Query goes here --*></h3>
         <input id="cmd" name="qry" style="width: 100%; margin: 10px; " placeholder="c tableName Column1 Column2..."/>
-        <input style="width: 15%;  margin: 10px;" type="submit" class='run' value="run" name="SubmitButton"/>     
+        <input style="width: 15%;  margin: 10px; font-weight: bold;" type="submit" class='run' value="run" name="SubmitButton"/>   
+        <input style="width: 15%;  margin: 10px; font-weight: bold; left: 0;" type="submit" class='clr' value="Clear Query" 
+      onclick="document.getElementByID('cmd').value=''"/>       
       </div>
     </form>
     <div id="about" class="modal">
@@ -281,17 +284,21 @@
           <center>
             <h1>&lt;CRUD.h&gt;</h1>
           </center>
-          <h2>MySQL shorthand tool to manage database very quickly like a Journalist. </br></br>Follow 
-            the specified syntax to Manipulate Data. </br></br><b style="color: #4DC3FA;">Components used </b></br></br> HTML, CSS, JavaScript, PHP, MySQL
+          <h2>MySQL shorthand tool to manage database like a Journalist.</br></br>
+            Follow the specified syntax to Manipulate Data. </br></br>
+            <b style="color: #4DC3FA;">Components used </b></br></br> HTML, CSS, JavaScript, PHP, MySQL
           </h2>
         </div>
       </form>
     </div>
     <script>
       document.getElementById('cmd').focus();
-      function updateCMD(val){
+      function updateCMD(val, c=0){
         var cmd = document.getElementById("cmd");
-        cmd.value = val;
+        if(c == 0)
+          cmd.value = val;
+        else
+          cmd.value += val + ' ';
       }
       
       // Get the modal

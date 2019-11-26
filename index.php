@@ -56,7 +56,8 @@
       </div>
     </div>
     <center>
-      <h1>&lt;CRUD.h&gt;</h1>
+    <h1>MySQL Shorthand Database Management<h1>
+    <h2 style="color:white;">&lt;CRUD.h&gt;</h2>
     </center>
     <div id="id01" class="modal">
       <form class="modal-content animate" action="schema.php" method="post">
@@ -82,7 +83,7 @@
           <center>
             <h1>&lt;CRUD.h&gt;</h1>
           </center>
-          <h2>MySQL shorthand tool to manage database very quickly like a Journalist. </br></br>Follow 
+          <h2 style="color: white;">MySQL shorthand tool to manage database like a Journalist.</br></br>Follow 
             the specified syntax to Manipulate Data. </br></br><b style="color: #4DC3FA;">Components used </b></br></br> HTML, CSS, JavaScript, PHP, MySQL
           </h2>
         </div>
