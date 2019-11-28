@@ -8,7 +8,7 @@
   <body style="background-image: url('./src/bg.jpg');background-repeat: no-repeat; background-size: 100% 100%;">
     <div class="header">
       <div class="navbar" >
-        <a onclick="document.getElementById('id01').style.display='block'" type="submit" style="width:auto;">Schema</a>
+        <a onclick="document.getElementById('id01').style.display='block'; updateLogin();" type="submit" style="width:auto;">Schema</a>
         <div class="dropdown">
           <button class="dropbtn">DDL Syntax 
           <i class="fa fa-caret-down"></i>
@@ -51,8 +51,8 @@
             </a>
           </div>
         </div>
-        <a onclick="document.getElementById('about').style.display='block'" type="submit" style="width:auto;">About</a>
-        <a onclick="document.getElementById('id01').style.display='block'" type="submit" style="width:auto; float: right;">Login to Schema</a>
+        <a onclick="document.getElementById('about').style.display='block';" type="submit" style="width:auto;">About</a>
+        <a onclick="document.getElementById('id01').style.display='block'; updateLogin();" type="submit" style="width:auto; float: right;">Login to Schema</a>
       </div>
     </div>
     <center>
@@ -100,15 +100,15 @@
                 echo "<script>window.location = 'dashboard.php/?user=$username';</script>"; //Reg success
                 // echo "Hi oldie";
             } else {
-                echo "<script>alert('Credentials Mismatch');</script>";
+                echo "<script>alert('Schema Exits, Credentials Mismatch!');</script>";
             }
         } 
         $conn->close();  
       }?>
 
     </div>
-    <div id="about"  class="modal">
-      <form style="background-color:#1F2739;" class="modal-content animate">
+    <div id="about"  class="modal" onclick="document.getElementById('about').style.display='none';">
+      <form style="background-color:#FFFFFF;" class="modal-content animate">
         <div class="imgcontainer">
           <span onclick="document.getElementById('about').style.display='none'" class="close" title="Close Modal">&times;</span>
           <img src="src/aboutBG.jpg" alt="About us" class="avatar"/>
@@ -117,7 +117,7 @@
           <center>
             <h1>&lt;CRUD.h&gt;</h1>
           </center>
-          <h2 style="color: white;">MySQL shorthand tool to manage database like a Journalist.</br></br>Follow 
+          <h2 style="color: black;">MySQL shorthand tool to manage database like a Journalist.</br></br>Follow 
             the specified syntax to Manipulate Data. </br></br><b style="color: #4DC3FA;">Components used </b></br></br> HTML, CSS, JavaScript, PHP, MySQL
           </h2>
         </div>
@@ -144,10 +144,13 @@
         }      
         ?>
     <script>
-      function updateLogin(val){
+      function updateLogin(val=""){
         document.getElementById('id01').style.display='block';
         document.getElementById('uid').value= val;
-        document.getElementById('pwd').focus();
+        if(val != "")
+          document.getElementById('pwd').focus();
+        else
+          document.getElementById('uid').focus();
       }        
       // Get the modal
       var modal = document.getElementById('id01');
@@ -155,7 +158,7 @@
       // When the user clicks anywhere outside of the modal, close it
       window.onclick = function(event) {
         if (event.target == modal) {
-            modal.style.display = "none";
+            modal.style.display = "none";            
         }
       }
       
