@@ -1,0 +1,65 @@
+<html>
+  <head><title>Syntax</title></head>  
+  <body style="background-color: #185875; color: #FFF842;">
+    <div style="text-align: center; margin: 10%;">
+    <div id="create" style="display: none;">
+      <h1>Create Table Syntax</h1>
+      <h2>MySQL syntax: <h4>CREATE TABLE tableName( id INT, name VARCHAR(40) );</h4></h2>
+      <h2>MySQL Shorthand syntax: <h4>c tableName id name</h4></h2>
+    </div>
+    
+    <div id="tdrop" style="display: none;">
+      <h1>Drop Table Syntax</h1>
+      <h2>MySQL: <h4>DROP TABLE tableName;</h4></h2>
+      <h2>MySQL Shorthand: <h4>dr tableName</h4></h2>
+    </div>
+
+    <div id="sdrop" style="display: none;">
+      <h1>Drop Schema Syntax</h1>
+      <h2>MySQL: <h4>DROP DATABASE databaseName;</h4></h2>
+      <h2>MySQL Shorthand: <h4>r</h4></h2>
+    </div>
+
+    <div id="insert" style="display: none;">
+      <h1>Insert Row Syntax</h1>
+      <h2>MySQL: <h4>INSERT INTO tableName VALUES( 1, 'name' );</h4></h2>
+      <h2>MySQL Shorthand: <h4>i tableName 1 name</h4></h2>
+    </div>
+
+    <div id="delete" style="display: none;">
+      <h1>Delete Row Syntax</h1>
+      <h2>MySQL: <h4>DELETE FROM tableName WHERE id = 1;</h4></h2>
+      <h2>MySQL Shorthand: <h4>d tableName id 1</h4></h2>
+    </div>
+
+    <div id="truncate" style="display: none;">
+      <h1>Truncate Table Syntax</h1>
+      <h2>MySQL: <h4>TRUNCATE TABLE  tableName;</h4></h2>
+      <h2>MySQL Shorthand: <h4>t tableName</h4></h2>
+    </div>
+  </div>
+    <script>
+      if (location.search.split('id=')[1] == "create"){
+        document.getElementById('create').style.display = 'block';
+      } 
+      else if (location.search.split('id=')[1] == "tdrop") {
+        document.getElementById('tdrop').style.display = 'block';
+      } 
+      else if (location.search.split('id=')[1] == "sdrop") {
+        document.getElementById('sdrop').style.display = 'block';
+      } 
+      else if (location.search.split('id=')[1] == "insert") {
+        document.getElementById('insert').style.display = 'block';
+      } 
+      else if (location.search.split('id=')[1] == "update") {
+        document.getElementById('update').style.display = 'block';
+      } 
+      else if (location.search.split('id=')[1] == "delete") {
+        document.getElementById('delete').style.display = 'block';
+      } 
+      else if (location.search.split('id=')[1] == "truncate") {
+        document.getElementById('truncate').style.display = 'block';
+      }
+    </script>
+  </body>
+</html>

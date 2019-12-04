@@ -14,15 +14,15 @@
           <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a >
+            <a href="./syntax.html?id=create" target="_blank" >
               <h3>Create Table</h3>
               <p>c tableName Columns...</p>
             </a>
-            <a href="#" >
+            <a href="./syntax.html?id=tdrop" target="_blank">
               <h3>Drop Table</h3>
               <p>d tableName</p>
             </a>
-            <a href="#">
+            <a href="./syntax.html?id=sdrop" target="_blank">
               <h3>Drop Schema</h3>
               <p>r</p>
             </a>
@@ -33,19 +33,19 @@
           <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a href="#">
+            <a href="./syntax.html?id=insert" target="_blank">
               <h3>Insert to Table</h3>
               <p>i tableName values...</p>
             </a>
-            <a href="#">
+            <a href="./syntax.html?id=update" target="_blank">
               <h3>Update Row</h3>
               <p>u tableName Column1 Value1 Column Value</p>
             </a>
-            <a href="#">
+            <a href="./syntax.html?id=delete" target="_blank">
               <h3>Delete Row</h3>
               <p>d tableName Column1 Value1</p>
             </a>
-            <a href="#">
+            <a href="./syntax.html?id=truncate" target="_blank">
               <h3>Truncate Table</h3>
               <p>t tableName</p>
             </a>
@@ -68,7 +68,7 @@
         </div>
         <div class="container">      
           <input type="text" placeholder="schemaName" id='uid' name="uid" required>
-          <input type="password" placeholder="Password" id='pwd' name="pwd" required>
+          <input type="password" placeholder="Password" id='pwd' name="pwd" pattern=".{4,}" title="Minimum 4 characters are required" required>
           <button type="submit" name="login">Run Schema</button>
         </div>
       </form>
@@ -118,7 +118,8 @@
             <h1>&lt;CRUD.h&gt;</h1>
           </center>
           <h2 style="color: black;">MySQL shorthand tool to manage database like a Journalist.</br></br>Follow 
-            the specified syntax to Manipulate Data. </br></br><b style="color: #4DC3FA;">Components used </b></br></br> HTML, CSS, JavaScript, PHP, MySQL
+            the specified syntax to Manipulate Data.</br></br>
+            <b style="color: #4DC3FA;">Components used</b></br></br> HTML, CSS, JavaScript, PHP, MySQL
           </h2>
         </div>
       </form>
