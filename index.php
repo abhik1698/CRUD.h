@@ -52,6 +52,7 @@
           </div>
         </div>
         <a onclick="document.getElementById('about').style.display='block';" type="submit" style="width:auto;">About</a>
+        <a type="submit" href="syntax.html" style="width:auto;">Blog</a>
         <a onclick="document.getElementById('id01').style.display='block'; updateLogin();" type="submit" style="width:auto; float: right;">Login to Schema</a>
       </div>
     </div>

@@ -1,7 +1,8 @@
 .syntax {
-	text-align: center;
-	margin: 5%;
-	padding: 5px;
+	text-align: center;	
+	margin-left: 10%;
+	margin-right: 10%;
+	padding: 2px;
 	color: #4DC3FA;
 	background-color: #185875;
 }
@@ -12,12 +13,15 @@
 
 h4.mysql {
 	color: rgb(255, 98, 98);
-	font-size: 40px
+	font-size: 40px;
+	margin: 0%;
 }
 
 h4.short {
 	color: #FFF842;
 	font-size: 40px;
+	margin: 0%;
+	margin-bottom: 1%;
 }
 
 .navbar {
@@ -79,4 +83,26 @@ h4.short {
 
 .dropdown:hover .dropdown-content {
 	display: block;
+}
+
+.notebook{
+	padding: 2%; 
+	background-image: url('./src/notebg.png');
+	background-repeat: no-repeat; 
+	background-size: cover; 
+	/* margin-left: 20%; */
+	/* margin-right: 20%; */
+	width: 60%;
+	float: right;
+}
+
+table, th, td{
+	border: solid;
+}
+th, td{
+	padding: 10px;
+}
+table{
+	text-align: center;
+	border-collapse: collapse;	
 }

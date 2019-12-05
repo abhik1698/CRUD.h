@@ -3,26 +3,27 @@
       <title>Syntax</title>
       <link type="text/css" rel="stylesheet" href="syntax.css">      
    </head>
-   <body>
+   <body style="background-image: url('./src/blogbg.jpg');background-repeat: no-repeat; background-size: 100%;">
       <div class="header" style="position: fixed;
          left: 0;
          right: 0;
          top: 0;text-align: center;">
-         <div class="navbar">            
+         <div class="navbar">   
+            <a href="index.php" type="submit" style="width:auto;">Home</a>         
             <div class="dropdown">
                <button class="dropbtn">DDL Syntax 
                <i class="fa fa-caret-down"></i>
                </button>
                <div class="dropdown-content">
-                  <a href="../syntax.html?id=create" target="_blank">
+                  <a href="./syntax.html?id=create" >
                      <h3>Create Table</h3>
                      <p id="c">c tableName Columns...</p>
                   </a>
-                  <a href="../syntax.html?id=tdrop" target="_blank" >
+                  <a href="./syntax.html?id=tdrop" >
                      <h3>Drop Table</h3>
                      <p id="dr">dr tableName</p>
                   </a>
-                  <a href="../syntax.html?id=sdrop" target="_blank">
+                  <a href="./syntax.html?id=sdrop" >
                      <h3>Drop Schema</h3>
                      <p id="r">r</p>
                   </a>
@@ -33,39 +34,61 @@
                <i class="fa fa-caret-down"></i>
                </button>
                <div class="dropdown-content">
-                  <a href="../syntax.html?id=insert" target="_blank">
+                  <a href="./syntax.html?id=insert" >
                      <h3>Insert to Table</h3>
                      <p id="i">i tableName values...</p>
                   </a>
-                  <a href="../syntax.html?id=update" target="_blank">
+                  <a href="./syntax.html?id=update" >
                      <h3>Update Row</h3>
                      <p id="u">u tableName Column1 Value1 Column Value</p>
                   </a>
-                  <a href="../syntax.html?id=delete" target="_blank">
+                  <a href="./syntax.html?id=delete" >
                      <h3>Delete Row</h3>
                      <p id="d">d tableName Column1 Value1</p>
                   </a>
-                  <a href="../syntax.html?id=truncate" target="_blank">
+                  <a href="./syntax.html?id=truncate" >
                      <h3>Truncate Table</h3>
                      <p id="t">t tableName</p>
                   </a>
                </div>
             </div> 
-            <center><a style="padding-left: 32%;">&lt;CRUD.h&gt;</a></center>                     
+            <a type="submit" href="./syntax.html" style="width:auto;">Blog</a>
+            <a type="submit" href="#crud" style="width:auto;">CRUD</a>     
+            <a type="submit" href="#why" style="width:auto;">Why MySQL Shorthand?</a>
+            <a type="submit" href="#use" style="width:auto;">Usage example?</a>
+            <a type="submit" href="#pk" style="width:auto;">Primary Key?</a>
          </div>
       </div>
+      </br>
+      <center>
+         <h1 id="crud">&lt;CRUD.h&gt;</h1>
+         <div name="fullform" style="margin-top: -1%;">
+            <h2 style="color: red; display: inline-block;">
+               C<h3 style="display: inline-block;">reate&nbsp;</h3>
+            </h2>
+            <h2 style="color: red; display: inline-block;">
+               R<h3 style="display: inline-block;">ead&nbsp;</h3>
+            </h2>
+            <h2 style="color: red; display: inline-block;">
+               U<h3 style="display: inline-block;">pdate&nbsp;</h3>
+            </h2>
+            <h2 style="color: red; display: inline-block;">
+               D<h3 style="display: inline-block;">elete</h3>
+            </h2>         
+         </div>
+      </center>
 
       <!--SYNTAX-->
-      <div class="syntax">
+      <div class="syntax" style="">
          <div id="create" style="display: none;">
             <h1>Create Table Syntax</h1>
             <h2>
                MySQL syntax: 
-               <h4 class="mysql">CREATE TABLE tableName( id INT, name VARCHAR(40) );</h4>
+               <h4 class="mysql">CREATE TABLE tableName (column1 datatype, column2 datatype);</h4>
             </h2>
             <h2>
                MySQL Shorthand syntax: 
-               <h4 class="short">c tableName id name</h4>
+               <h4 class="short">c tableName column1 column2</h4>
             </h2>
          </div>
          <div id="tdrop" style="display: none;">
@@ -94,11 +117,11 @@
             <h1>Insert Row Syntax</h1>
             <h2>
                MySQL: 
-               <h4 class="mysql">INSERT INTO tableName VALUES( 1, 'name' );</h4>
+               <h4 class="mysql">INSERT INTO tableName VALUES( value1, value2 );</h4>
             </h2>
             <h2>
                MySQL Shorthand: 
-               <h4 class="short">i tableName 1 name</h4>
+               <h4 class="short">i tableName value1 value2</h4>
             </h2>
          </div>
          <div id="update" style="display: none;">
@@ -116,11 +139,11 @@
             <h1>Delete Row Syntax</h1>
             <h2>
                MySQL: 
-               <h4 class="mysql">DELETE FROM tableName WHERE id = 1;</h4>
+               <h4 class="mysql">DELETE FROM tableName WHERE column = value;</h4>
             </h2>
             <h2>
                MySQL Shorthand: 
-               <h4 class="short">d tableName id 1</h4>
+               <h4 class="short">d tableName column1 value1</h4>
             </h2>
          </div>
          <div id="truncate" style="display: none;">
@@ -135,46 +158,163 @@
             </h2>
          </div>
       </div>
-      <div class="blog">
-         <center>
-            <h1>SQL</h1>
-         </center>
-         <h3>SQL is a standard language for accessing and manipulating databases.</h3>
-         <h2>What is SQL?</h2>
-         <h3>
-            <li>SQL stands for Structured Query Language</li>
-            <li>SQL lets you access and manipulate databases</li>
-         </h3>
-         <h2>What Can SQL do?</h2>
-         <h3>
-            <li>SQL can execute queries against a database</li>
-            <li>SQL can create & delete a database.</li>
-            <li>SQL can insert, read, update, delete, records in a database</li>
-         </h3>
+      <div name="notebook_Parent" style="width: 100%; overflow: hidden;">      
+         <div class="notebook" >
+            <center>
+               <h1 style="color: red; display: inline-block;">SQL</h1>
+               <h3 style="display: inline-block;">&nbsp;vs&nbsp;</h3>
+               <h1 style="color: red; display: inline-block;">MySQL</h1>
+               <h3 style="display: inline-block;">&nbsp;vs&nbsp;</h3>
+               <h1 style="color: green; display: inline-block;">MySQL Shorthand</h1>                  
+            </center>
+            <div style="margin-left: 10%; ">            
+               <h2 style="color: red;">SQL</h2>
+               <h3 style="color: blue;">
+                  <li>SQL is a standard language for accessing and manipulating relational databases.</li></br>
+                  <li>SQL stands for Structured Query Language.</li></br>
+                  <li>SQL is used to update database by queries.</li>
+               </h3>
+               <h2 style="color: red;">MySQL</h2>
+               <h3 style="color: blue;">
+                  <li>MySQL is a Relational Database Management System.</li></br>
+                  <li>MySQL is a database Software.</li></br>
+                  <li>MySQL allows to handle & modify data in a database through tables.</li>
+               </h3>
+               <h2 style="color: green;">MySQL Shorthand</h2>
+               <h3 style="color: blue;">
+                  <li>MySQL Shorthand is a Database Management System in shorthand technique.</li></br>
+                  <li>There are no difference between MySQL & MySQL Shorthand tool, than a faster query.</li></br>               
+                  <li>To do so, shotforms are used as input queries by defining the well-known SQL</br> 
+                     syntax in the backend part of the query executed.</li>
+               </h3>
+            </div>
+         </div>
+      </div>
+         
+      <div>
+         <center id="why">
+            <h1>Why MySQL Shorthand?</h1>
+            <img src="./src/blogbg2.jpg" alt="to save typing" />
+         </center></br>
+         <div style="margin-left: 15%; margin-right: 15%;">
+            <p>Many Developers repeatedly will have to modify data in a database with well-known SQL syntax which is quite
+               lengthy. Hence, this tool is made to reduce their work in typing & to have the same kind of data modification
+               with minimized query syntax.
+            </p>
+
+            <h2>Which Datatype is used? VARCHAR</h2>         
+            <p><b>VARCHAR is set as default datatypes to columns created for tables.</b></p>
+            <p>As data in databases are extracted by other software programming languages, datatypes can be parsed to any 
+               required format of the programmer's choice if the data in database is stored as a VARCHAR datatype.
+            </p>            
+
+            <h2 id="use">Usage Examples?</h2>
+            <p><b>Number of empty character spaces matter in separating each entered value by user.</b></p>
+            
+            <div name="table" style="float: right;">
+               <b>Students</b>
+               <table>
+                  <tr><th>usn</th><th>name</th><th>branch</th></tr>                  
+               </table>
+            </div>
+            <hr/>
+            <h1>Create Table</h1>            
+            <p>In SQL syntax to create a table with 2 columns we use,</p>
+            <h2><pre><b>CREATE TABLE students ( usn VARCHAR(40), name VARCHAR(40), branch VARCHAR(40) );</b></pre></h2>
+            <p>But in this shorthand tool, we just query,</p>
+            <h2><pre><b>c students usn name branch</b></pre></h2>
+            
+            <hr/>
+            <h1>Drop Table</h1>
+            <p>SQL syntax</p>
+            <h2><pre><b>DROP TABLE students;</b></pre></h2>
+            <p>Shorthand syntax</p>
+            <h2><pre><b>dr students</b></pre></h2>
+
+            <hr/>
+            <h1>Drop Schema / Database</h1>
+            <p>SQL syntax</p>
+            <h2><pre><b>DROP DATABASE college;</b></pre></h2>
+            <p>Shorthand syntax</p>
+            <h2><pre><b>r</b></pre></h2>
+
+            <div name="table" style="float: right;">
+               <b>Students</b>
+               <table>
+                  <tr><th>usn</th><th>name</th><th>branch</th></tr>
+                  <tr><td>1DB15CS003</td><td>Abhi</td><td>CSE</td></tr>
+               </table>
+            </div>
+   
+            <hr/>
+            <h1>Insert Row</h1>
+            <p>SQL syntax</p>
+            <h2><pre><b>INSERT INTO students VALUES ( '1DB15CS003', 'Abhi', 'CSE' );</b></pre></h2>
+            <p>Shorthand syntax</p>
+            <h2><pre><b>i students 1DB15CS003 Abhi CSE</b></pre></h2>
+            
+            <div name="table" style="float: right;">
+               <b>Students</b>
+               <table>
+                  <tr><th>usn</th><th>name</th><th>branch</th></tr>
+                  <tr><td>1DB15CS003</td><td>Abhishek</td><td>CSE</td></tr>
+               </table>
+            </div>
+
+            <hr/>
+            <h1>Update Row</h1>
+            <p>SQL syntax</p>
+            <h2><pre><b>UPDATE students SET name = Abhishek WHERE usn = '1DB15CS003';</b></pre></h2>
+            <p>Shorthand syntax</p>
+            <h2><pre><b>u students usn 1DB15CS003 name Abhishek</b></pre></h2>
+
+            <hr/>
+            <h1>Delete Row</h1>
+            <p>SQL syntax</p>
+            <h2><pre><b>DELETE FROM students WHERE usn = '1DB15CS003';</b></pre></h2>
+            <p>Shorthand syntax</p>
+            <h2><pre><b>d students usn 1DB15CS003</b></pre></h2>
+
+            <hr/>
+            <h1>Truncate Table</h1>
+            <p>SQL syntax</p>
+            <h2><pre><b>TRUNCATE TABLE students;;</b></pre></h2>
+            <p>Shorthand syntax</p>
+            <h2><pre><b>t students</b></pre></h2>
+            <hr/>
+
+            <h2 id="pk">Primary Key? 1st Column</h2>
+            <li>As for the date, primary key functionality is given to 1st column in the table when it gets created.</li>
+            <li>Hence the first column name & value is required to be given in WHERE condtions to update & delete queries.</li>
+            <li>Likewise, many of the MySQL functionalities are missing in our Shorthand tool so far.</li>
+            <li>Will be updating this tool's syntax with maximum functionalities included from MySQL.</li>
+         </div>
       </div>
 
       <script>
-        if (location.search.split('id=')[1] == "create"){
-          document.getElementById('create').style.display = 'block';
-        } 
-        else if (location.search.split('id=')[1] == "tdrop") {
-          document.getElementById('tdrop').style.display = 'block';
-        } 
-        else if (location.search.split('id=')[1] == "sdrop") {
-          document.getElementById('sdrop').style.display = 'block';
-        } 
-        else if (location.search.split('id=')[1] == "insert") {
-          document.getElementById('insert').style.display = 'block';
-        } 
-        else if (location.search.split('id=')[1] == "update") {
-          document.getElementById('update').style.display = 'block';
-        } 
-        else if (location.search.split('id=')[1] == "delete") {
-          document.getElementById('delete').style.display = 'block';
-        } 
-        else if (location.search.split('id=')[1] == "truncate") {
-          document.getElementById('truncate').style.display = 'block';
-        }        
+        switch (location.search.split('id=')[1]){
+            case "create": 
+               document.getElementById('create').style.display = 'block';
+               break;
+            case "tdrop": 
+               document.getElementById('tdrop').style.display = 'block';
+               break;
+            case "sdrop":
+               document.getElementById('sdrop').style.display = 'block';
+               break;
+            case "insert":
+               document.getElementById('insert').style.display = 'block';
+               break;
+            case "update":
+               document.getElementById('update').style.display = 'block';
+               break;
+            case "delete":
+               document.getElementById('delete').style.display = 'block';
+               break;
+            case "truncate":
+               document.getElementById('truncate').style.display = 'block';
+               break; 
+        }     
       </script>
    </body>
 </html>
