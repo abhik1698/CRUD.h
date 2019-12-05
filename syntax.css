@@ -106,3 +106,9 @@ table{
 	text-align: center;
 	border-collapse: collapse;	
 }
+
+select, option{
+	text-align: center;
+	font-weight: bold;
+	font-size: large;	
+}
