@@ -181,15 +181,15 @@
           <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a onclick="updateCMD('c ')">
+            <a onclick="updateCMD('c ')" href="../syntax.html?id=create" target="_blank">
               <h3>Create Table</h3>
               <p id="c">c tableName Columns...</p>
             </a>
-            <a href="#" onclick="updateCMD('dr ')" >
+            <a href="../syntax.html?id=tdrop" target="_blank" onclick="updateCMD('dr ')" >
               <h3>Drop Table</h3>
               <p id="dr">dr tableName</p>
             </a>
-            <a href="#" onclick="updateCMD('r ')">
+            <a href="../syntax.html?id=sdrop" target="_blank" onclick="updateCMD('r ')">
               <h3>Drop Schema</h3>
               <p id="r">r</p>
             </a>
@@ -200,19 +200,19 @@
           <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a href="#" onclick="updateCMD('i ')">
+            <a href="../syntax.html?id=insert" target="_blank" onclick="updateCMD('i ')">
               <h3>Insert to Table</h3>
               <p id="i">i tableName values...</p>
             </a>
-            <a href="#" onclick="updateCMD('u ')">
+            <a href="../syntax.html?id=update" target="_blank" onclick="updateCMD('u ')">
               <h3>Update Row</h3>
               <p id="u">u tableName Column1 Value1 Column Value</p>
             </a>
-            <a href="#" onclick="updateCMD('d ')">
+            <a href="../syntax.html?id=delete" target="_blank" onclick="updateCMD('d ')">
               <h3>Delete Row</h3>
               <p id="d">d tableName Column1 Value1</p>
             </a>
-            <a href="#" onclick="updateCMD('t ')">
+            <a href="../syntax.html?id=truncate" target="_blank" onclick="updateCMD('t ')">
               <h3>Truncate Table</h3>
               <p id="t">t tableName</p>
             </a>

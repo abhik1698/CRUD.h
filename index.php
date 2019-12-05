@@ -13,7 +13,7 @@
           <button class="dropbtn">DDL Syntax 
           <i class="fa fa-caret-down"></i>
           </button>
-          <div class="dropdown-content">
+          <div class="dropdown-content"> 
             <a href="./syntax.html?id=create" target="_blank" >
               <h3>Create Table</h3>
               <p>c tableName Columns...</p>

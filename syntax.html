@@ -1,65 +1,180 @@
 <html>
-  <head><title>Syntax</title></head>  
-  <body style="background-color: #185875; color: #FFF842;">
-    <div style="text-align: center; margin: 10%;">
-    <div id="create" style="display: none;">
-      <h1>Create Table Syntax</h1>
-      <h2>MySQL syntax: <h4>CREATE TABLE tableName( id INT, name VARCHAR(40) );</h4></h2>
-      <h2>MySQL Shorthand syntax: <h4>c tableName id name</h4></h2>
-    </div>
-    
-    <div id="tdrop" style="display: none;">
-      <h1>Drop Table Syntax</h1>
-      <h2>MySQL: <h4>DROP TABLE tableName;</h4></h2>
-      <h2>MySQL Shorthand: <h4>dr tableName</h4></h2>
-    </div>
+   <head>
+      <title>Syntax</title>
+      <link type="text/css" rel="stylesheet" href="syntax.css">      
+   </head>
+   <body>
+      <div class="header" style="position: fixed;
+         left: 0;
+         right: 0;
+         top: 0;text-align: center;">
+         <div class="navbar">            
+            <div class="dropdown">
+               <button class="dropbtn">DDL Syntax 
+               <i class="fa fa-caret-down"></i>
+               </button>
+               <div class="dropdown-content">
+                  <a href="../syntax.html?id=create" target="_blank">
+                     <h3>Create Table</h3>
+                     <p id="c">c tableName Columns...</p>
+                  </a>
+                  <a href="../syntax.html?id=tdrop" target="_blank" >
+                     <h3>Drop Table</h3>
+                     <p id="dr">dr tableName</p>
+                  </a>
+                  <a href="../syntax.html?id=sdrop" target="_blank">
+                     <h3>Drop Schema</h3>
+                     <p id="r">r</p>
+                  </a>
+               </div>
+            </div>
+            <div class="dropdown">
+               <button class="dropbtn">DML Syntax 
+               <i class="fa fa-caret-down"></i>
+               </button>
+               <div class="dropdown-content">
+                  <a href="../syntax.html?id=insert" target="_blank">
+                     <h3>Insert to Table</h3>
+                     <p id="i">i tableName values...</p>
+                  </a>
+                  <a href="../syntax.html?id=update" target="_blank">
+                     <h3>Update Row</h3>
+                     <p id="u">u tableName Column1 Value1 Column Value</p>
+                  </a>
+                  <a href="../syntax.html?id=delete" target="_blank">
+                     <h3>Delete Row</h3>
+                     <p id="d">d tableName Column1 Value1</p>
+                  </a>
+                  <a href="../syntax.html?id=truncate" target="_blank">
+                     <h3>Truncate Table</h3>
+                     <p id="t">t tableName</p>
+                  </a>
+               </div>
+            </div> 
+            <center><a style="padding-left: 32%;">&lt;CRUD.h&gt;</a></center>                     
+         </div>
+      </div>
 
-    <div id="sdrop" style="display: none;">
-      <h1>Drop Schema Syntax</h1>
-      <h2>MySQL: <h4>DROP DATABASE databaseName;</h4></h2>
-      <h2>MySQL Shorthand: <h4>r</h4></h2>
-    </div>
+      <!--SYNTAX-->
+      <div class="syntax">
+         <div id="create" style="display: none;">
+            <h1>Create Table Syntax</h1>
+            <h2>
+               MySQL syntax: 
+               <h4 class="mysql">CREATE TABLE tableName( id INT, name VARCHAR(40) );</h4>
+            </h2>
+            <h2>
+               MySQL Shorthand syntax: 
+               <h4 class="short">c tableName id name</h4>
+            </h2>
+         </div>
+         <div id="tdrop" style="display: none;">
+            <h1>Drop Table Syntax</h1>
+            <h2>
+               MySQL: 
+               <h4 class="mysql">DROP TABLE tableName;</h4>
+            </h2>
+            <h2>
+               MySQL Shorthand: 
+               <h4 class="short">dr tableName</h4>
+            </h2>
+         </div>
+         <div id="sdrop" style="display: none;">
+            <h1>Drop Schema Syntax</h1>
+            <h2>
+               MySQL: 
+               <h4 class="mysql">DROP DATABASE databaseName;</h4>
+            </h2>
+            <h2>
+               MySQL Shorthand: 
+               <h4 class="short">r</h4>
+            </h2>
+         </div>
+         <div id="insert" style="display: none;">
+            <h1>Insert Row Syntax</h1>
+            <h2>
+               MySQL: 
+               <h4 class="mysql">INSERT INTO tableName VALUES( 1, 'name' );</h4>
+            </h2>
+            <h2>
+               MySQL Shorthand: 
+               <h4 class="short">i tableName 1 name</h4>
+            </h2>
+         </div>
+         <div id="update" style="display: none;">
+            <h1>Update Row Syntax</h1>
+            <h2>
+               MySQL: 
+               <h4 class="mysql">UPDATE tableName SET column = value where column1 = value1;</h4>
+            </h2>
+            <h2>
+               MySQL Shorthand: 
+               <h4 class="short">u tableName column1 value1 column value</h4>
+            </h2>
+         </div>
+         <div id="delete" style="display: none;">
+            <h1>Delete Row Syntax</h1>
+            <h2>
+               MySQL: 
+               <h4 class="mysql">DELETE FROM tableName WHERE id = 1;</h4>
+            </h2>
+            <h2>
+               MySQL Shorthand: 
+               <h4 class="short">d tableName id 1</h4>
+            </h2>
+         </div>
+         <div id="truncate" style="display: none;">
+            <h1>Truncate Table Syntax</h1>
+            <h2>
+               MySQL: 
+               <h4 class="mysql">TRUNCATE TABLE  tableName;</h4>
+            </h2>
+            <h2>
+               MySQL Shorthand: 
+               <h4 class="short">t tableName</h4>
+            </h2>
+         </div>
+      </div>
+      <div class="blog">
+         <center>
+            <h1>SQL</h1>
+         </center>
+         <h3>SQL is a standard language for accessing and manipulating databases.</h3>
+         <h2>What is SQL?</h2>
+         <h3>
+            <li>SQL stands for Structured Query Language</li>
+            <li>SQL lets you access and manipulate databases</li>
+         </h3>
+         <h2>What Can SQL do?</h2>
+         <h3>
+            <li>SQL can execute queries against a database</li>
+            <li>SQL can create & delete a database.</li>
+            <li>SQL can insert, read, update, delete, records in a database</li>
+         </h3>
+      </div>
 
-    <div id="insert" style="display: none;">
-      <h1>Insert Row Syntax</h1>
-      <h2>MySQL: <h4>INSERT INTO tableName VALUES( 1, 'name' );</h4></h2>
-      <h2>MySQL Shorthand: <h4>i tableName 1 name</h4></h2>
-    </div>
-
-    <div id="delete" style="display: none;">
-      <h1>Delete Row Syntax</h1>
-      <h2>MySQL: <h4>DELETE FROM tableName WHERE id = 1;</h4></h2>
-      <h2>MySQL Shorthand: <h4>d tableName id 1</h4></h2>
-    </div>
-
-    <div id="truncate" style="display: none;">
-      <h1>Truncate Table Syntax</h1>
-      <h2>MySQL: <h4>TRUNCATE TABLE  tableName;</h4></h2>
-      <h2>MySQL Shorthand: <h4>t tableName</h4></h2>
-    </div>
-  </div>
-    <script>
-      if (location.search.split('id=')[1] == "create"){
-        document.getElementById('create').style.display = 'block';
-      } 
-      else if (location.search.split('id=')[1] == "tdrop") {
-        document.getElementById('tdrop').style.display = 'block';
-      } 
-      else if (location.search.split('id=')[1] == "sdrop") {
-        document.getElementById('sdrop').style.display = 'block';
-      } 
-      else if (location.search.split('id=')[1] == "insert") {
-        document.getElementById('insert').style.display = 'block';
-      } 
-      else if (location.search.split('id=')[1] == "update") {
-        document.getElementById('update').style.display = 'block';
-      } 
-      else if (location.search.split('id=')[1] == "delete") {
-        document.getElementById('delete').style.display = 'block';
-      } 
-      else if (location.search.split('id=')[1] == "truncate") {
-        document.getElementById('truncate').style.display = 'block';
-      }
-    </script>
-  </body>
+      <script>
+        if (location.search.split('id=')[1] == "create"){
+          document.getElementById('create').style.display = 'block';
+        } 
+        else if (location.search.split('id=')[1] == "tdrop") {
+          document.getElementById('tdrop').style.display = 'block';
+        } 
+        else if (location.search.split('id=')[1] == "sdrop") {
+          document.getElementById('sdrop').style.display = 'block';
+        } 
+        else if (location.search.split('id=')[1] == "insert") {
+          document.getElementById('insert').style.display = 'block';
+        } 
+        else if (location.search.split('id=')[1] == "update") {
+          document.getElementById('update').style.display = 'block';
+        } 
+        else if (location.search.split('id=')[1] == "delete") {
+          document.getElementById('delete').style.display = 'block';
+        } 
+        else if (location.search.split('id=')[1] == "truncate") {
+          document.getElementById('truncate').style.display = 'block';
+        }        
+      </script>
+   </body>
 </html>
