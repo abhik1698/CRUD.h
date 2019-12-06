@@ -181,7 +181,7 @@
           <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a target="_blank">
+            <a onclick="updateCMD('c ')">
               <h3>Create Table</h3>
               <p id="c">c tableName Columns...</p>
             </a>
@@ -260,16 +260,17 @@
         }  
         $conn->close();
         ?>
-      </br></br>
+      </br></br></br></br>
       <div class="footer"style="position: fixed;
         left: 0;
+        right: 0;
         bottom: 0;
         width: 90%;   
         text-align: center;   
         display: flex;
-        margin-left: 3px;" >       
+        margin: 0% 4% 0%;" >       
         <h3>Query goes here --*></h3>
-        <input id="cmd" name="qry" style="width: 100%; margin: 10px; " placeholder="c tableName Column1 Column2..."/>
+        <input id="cmd" name="qry" style="width: 100%; margin: 10px;padding:10px;" placeholder="c tableName Column1 Column2..."/>
         <input style="width: 15%;  margin: 10px; font-weight: bold;" type="submit" class='run' value="run" name="SubmitButton"/>   
         <input style="width: 15%;  margin: 10px; font-weight: bold; left: 0;" type="submit" class='clr' value="Clear Query" 
       onclick="document.getElementByID('cmd').value=''"/>       

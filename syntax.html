@@ -53,10 +53,10 @@
                </div>
             </div> 
             <a type="submit" href="./syntax.html" style="width:auto;">Blog</a>
-            <a type="submit" href="#crud" style="width:auto;">CRUD</a>     
-            <a type="submit" href="#why" style="width:auto;">Why MySQL Shorthand?</a>
-            <a type="submit" href="#use" style="width:auto;">Usage example?</a>
-            <a type="submit" href="#pk" style="width:auto;">Primary Key?</a>
+            <a type="submit" onclick="document.getElementById('crud').scrollIntoView({ behavior: 'smooth', block: 'center' });" style="width:auto;">CRUD</a>     
+            <a type="submit" onclick="document.getElementById('why').scrollIntoView({ behavior: 'smooth', block: 'center' });" style="width:auto;">Why MySQL Shorthand?</a>
+            <a type="submit" onclick="document.getElementById('use').scrollIntoView({ behavior: 'smooth', block: 'start' });" style="width:auto;">Usage example?</a>
+            <a type="submit" onclick="document.getElementById('pk').scrollIntoView({ behavior: 'smooth', block: 'center' });" style="width:auto;">Primary Key?</a>
          </div>
       </div>
       </br>
@@ -91,7 +91,7 @@
             <option value="truncate">Truncate Table</option>
          </select>
          </br>
-         <div id="create" style="display: none;">
+         <div id="create" class="syn" style="display: none;">
             <h1>Create Table Syntax</h1>
             <h2>
                MySQL syntax: 
@@ -102,7 +102,7 @@
                <h4 class="short">c tableName column1 column2</h4>
             </h2>
          </div>
-         <div id="tdrop" style="display: none;">
+         <div id="tdrop" class="syn" style="display: none;">
             <h1>Drop Table Syntax</h1>
             <h2>
                MySQL: 
@@ -113,7 +113,7 @@
                <h4 class="short">dr tableName</h4>
             </h2>
          </div>
-         <div id="sdrop" style="display: none;">
+         <div id="sdrop" class="syn" style="display: none;">
             <h1>Drop Schema Syntax</h1>
             <h2>
                MySQL: 
@@ -124,7 +124,7 @@
                <h4 class="short">r</h4>
             </h2>
          </div>
-         <div id="insert" style="display: none;">
+         <div id="insert" class="syn" style="display: none;">
             <h1>Insert Row Syntax</h1>
             <h2>
                MySQL: 
@@ -135,7 +135,7 @@
                <h4 class="short">i tableName value1 value2</h4>
             </h2>
          </div>
-         <div id="update" style="display: none;">
+         <div id="update" class="syn" style="display: none;">
             <h1>Update Row Syntax</h1>
             <h2>
                MySQL: 
@@ -146,7 +146,7 @@
                <h4 class="short">u tableName column1 value1 column value</h4>
             </h2>
          </div>
-         <div id="delete" style="display: none;">
+         <div id="delete" class="syn" style="display: none;">
             <h1>Delete Row Syntax</h1>
             <h2>
                MySQL: 
@@ -157,7 +157,7 @@
                <h4 class="short">d tableName column1 value1</h4>
             </h2>
          </div>
-         <div id="truncate" style="display: none;">
+         <div id="truncate" class="syn" style="display: none;">
             <h1>Truncate Table Syntax</h1>
             <h2>
                MySQL: 
@@ -208,10 +208,13 @@
          <img src="./src/blogbg2.jpg" alt="to save typing" />
       </center></br>
       <div style="margin-left: 15%; margin-right: 15%;">
-         <p>Many Developers repeatedly will have to modify data in a database with well-known SQL syntax which is quite
-            lengthy. Hence, this tool is made to reduce their work in typing & to have the same kind of data modification
-            with minimized query syntax.
-         </p>
+         <li>Some of the Students / Developers repeatedly will have to modify data in a database with well-known SQL syntax.</li>
+         <li>This repetition will have common syntax usage again & again which becomes boring to type the entire syntax at some point</li>
+         <li>We know that SQL Syntax is not a bigger one but a simple syntax.</li>
+         <li>This tool is designed to make it even a shorter & simpler syntax.</li>
+         <li>Hence, this tool is made to reduce their work in typing & to have the same kind of data modification 
+            with minimized query syntax.</li>
+         
 
          <h2>Which Datatype is used? VARCHAR</h2>         
          <p><b>VARCHAR is set as default datatypes to columns created for tables.</b></p>
@@ -275,7 +278,7 @@
          <hr/>
          <h1>Update Row</h1>
          <p>SQL syntax</p>
-         <h2><pre><b>UPDATE students SET name = Abhishek WHERE usn = '1DB15CS003';</b></pre></h2>
+         <h2><pre><b>UPDATE students SET name = 'Abhishek' WHERE usn = '1DB15CS003';</b></pre></h2>
          <p>Shorthand syntax</p>
          <h2><pre><b>u students usn 1DB15CS003 name Abhishek</b></pre></h2>
 
@@ -289,7 +292,7 @@
          <hr/>
          <h1>Truncate Table</h1>
          <p>SQL syntax</p>
-         <h2><pre><b>TRUNCATE TABLE students;;</b></pre></h2>
+         <h2><pre><b>TRUNCATE TABLE students;</b></pre></h2>
          <p>Shorthand syntax</p>
          <h2><pre><b>t students</b></pre></h2>
          <hr/>
@@ -302,65 +305,20 @@
       </div>      
 
       <script>
-
+         var url_attr;
+         url_attr = document.getElementById(location.search.split('id=')[1]);
+         url_attr.style.display = 'block';
+         
          function my_select(){
+            var x = document.getElementsByClassName("syn");
+            for (var i = 0; i < x.length; i++) {
+               x[i].style.display = 'none';
+            }
 
-            document.getElementById('create').style.display='none';                  
-            document.getElementById('tdrop').style.display = 'none';            
-            document.getElementById('sdrop').style.display = 'none';
-            document.getElementById('insert').style.display = 'none';
-            document.getElementById('update').style.display = 'none';
-            document.getElementById('delete').style.display = 'none';
-            document.getElementById('truncate').style.display = 'none';
-                  
-            switch(document.getElementById('mySelect').value) {
-               case "create":
-                  document.getElementById('create').style.display='block';
-                  break;
-               case "tdrop": 
-                  document.getElementById('tdrop').style.display = 'block';
-                  break;
-               case "sdrop":
-                  document.getElementById('sdrop').style.display = 'block';
-                  break;
-               case "insert":
-                  document.getElementById('insert').style.display = 'block';
-                  break;
-               case "update":
-                  document.getElementById('update').style.display = 'block';
-                  break;
-               case "delete":
-                  document.getElementById('delete').style.display = 'block';
-                  break;
-               case "truncate":
-                  document.getElementById('truncate').style.display = 'block';
-                  break; 
-            }            
+            var sel = document.getElementById(document.getElementById('mySelect').value);
+            sel.style.display='block';
          }
-
-        switch (location.search.split('id=')[1]){
-            case "create": 
-               document.getElementById('create').style.display = 'block';
-               break;
-            case "tdrop": 
-               document.getElementById('tdrop').style.display = 'block';
-               break;
-            case "sdrop":
-               document.getElementById('sdrop').style.display = 'block';
-               break;
-            case "insert":
-               document.getElementById('insert').style.display = 'block';
-               break;
-            case "update":
-               document.getElementById('update').style.display = 'block';
-               break;
-            case "delete":
-               document.getElementById('delete').style.display = 'block';
-               break;
-            case "truncate":
-               document.getElementById('truncate').style.display = 'block';
-               break; 
-        }     
+                    
       </script>
    </body>
 </html>
