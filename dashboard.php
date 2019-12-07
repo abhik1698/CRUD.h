@@ -34,6 +34,7 @@
           }
         }
         $keywords[$count] = $keyword;
+        $keywords[0] = strtolower($keywords[0]);
         
         if (trim($keywords[0]) === "exit" || trim($keywords[0]) === "logout" || trim($keywords[0]) === "x") {
           echo "<script>window.location = '../index.php';</script>";
