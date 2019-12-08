@@ -227,10 +227,8 @@
 
          <hr/>
          <h1>To Exit / Logout from Command Line Dashboard</h1>            
-         <p>Use any of the following commands to logout from CMD</p>
-         <h2><pre><b>x</b></pre></h2>
-         <h2><pre><b>exit</b></pre></h2>
-         <h2><pre><b>logout</b></pre></h2>
+         <p>Use anyone of the following commands to logout from CMD</p>                  
+         <h2><pre><b>logout  |  exit  |  x</b></pre></h2>
                   
          <div name="table" style="float: right;">
             <b>Students</b>
@@ -313,9 +311,12 @@
       </div>      
 
       <script>
-         var url_attr;
-         url_attr = document.getElementById(location.search.split('id=')[1]);
-         url_attr.style.display = 'block';
+         try{
+            var url_attr;
+            url_attr = document.getElementById(location.search.split('id=')[1]);
+            url_attr.style.display = 'block';
+         } catch{}
+         
          
          function my_select(){
             var x = document.getElementsByClassName("syn");
