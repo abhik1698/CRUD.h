@@ -12,6 +12,6 @@ Tbls -> user, tbl
 
 >All in VarChar datatype
 
-Update MySQL server connection with [username, password & host] in [index.php, schema.php & dashboard.php]
+Update MySQL server connection with [username, password & host] in [index.php & dashboard.php]
 
 >Run with server
